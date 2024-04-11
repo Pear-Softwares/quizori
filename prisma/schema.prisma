@@ -51,15 +51,16 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  Game          Game[]
+  Game          game[]
 }
 
 enum GameType {
-  moq
+  mcq
   open_ended
 }
 
-model Game {
+model game {
+  
   id          String     @id @default(cuid())
   userId      String
   timeStarted DateTime
@@ -67,7 +68,7 @@ model Game {
   timeEnded   DateTime
   gameType    GameType
   user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  questions    Question[]
+  question    Question[]
 
   @@index([userId], name: "userId")
 }
@@ -82,7 +83,7 @@ model Question {
   questionType      GameType
   userAnswer        String?
 isCorrect         Boolean?
-  game Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  game game @relation(fields: [gameId], references: [id], onDelete: Cascade)
 
   @@index([gameId], name: "gameId")
 }
