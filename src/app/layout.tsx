@@ -22,11 +22,8 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en">
       <body className={cn(inter.className, "antialiased min-h-screen pt-16")}>
-        <Providers>
           <Navbar />
           {children }
-          <Toaster />
-        </Providers>
       </body>
     </html>
     </ClerkProvider>

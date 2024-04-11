@@ -3,7 +3,7 @@ import HistoryCard from "@/components/dashboard/HistoryCard";
 import HotTopicsCard from "@/components/dashboard/HotTopicsCard";
 import QuizMeCard from "@/components/dashboard/QuizMeCard";
 import RecentActivityCard from "@/components/dashboard/RecentActivityCard";
-import { getAuthSession } from "@/lib/nextauth";
+import { auth} from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -14,10 +14,10 @@ export const metadata = {
   description: "Quiz yourself on anything!",
 };
 
-const Dasboard = async (props: Props) => {
-  const session = await getAuthSession();
-  if (!session?.user) {
-    redirect("/");
+const Dashboard = (props: Props) => {
+  const { userId } = auth();
+  if (!userId) {
+    return redirect("/");
   }
 
   return (
@@ -39,4 +39,4 @@ const Dasboard = async (props: Props) => {
   );
 };
 
-export default Dasboard;
+export default Dashboard;
