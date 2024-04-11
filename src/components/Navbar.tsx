@@ -14,7 +14,8 @@ export default async function Header() {
               <Link href='/dashboard'>Dashboard</Link>
               <UserButton afterSignOutUrl='/' />
             </div>
-          ) : (
+          ) :
+           (
             <div className='flex gap-4 items-center'>
               <Link href='/sign-up'>Sign up</Link>
               <Link href='/sign-in'>Sign In</Link>
