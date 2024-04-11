@@ -1,16 +1,15 @@
-"use client";
-import React from "react";
 import { Button } from "./ui/button";
-
-import { SignIn } from "@clerk/clerk-react";
+import { useRouter } from 'next/router';
 
 type Props = { text: string };
 
 const SignInButton = ({ text }: Props) => {
+  const router = useRouter();
+
   return (
     <Button
       onClick={() => {
-        SignIn.open();
+        router.push('/sign-in');
       }}
     >
       {text}

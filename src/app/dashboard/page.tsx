@@ -17,7 +17,7 @@ export const metadata = {
 const Dashboard = (props: Props) => {
   const { userId } = auth();
   if (!userId) {
-    return redirect("/");
+    redirect("/");
   }
 
   return (
