@@ -1,6 +1,6 @@
 import React from "react";
+import { auth} from "@clerk/nextjs";
 
-import { getAuthSession } from "@/lib/nextauth";
 import { redirect } from "next/navigation";
 import QuizCreation from "@/components/forms/QuizCreation";
 
@@ -16,9 +16,9 @@ interface Props {
 }
 
 const Quiz = async ({ searchParams }: Props) => {
-  const session = await getAuthSession();
-  if (!session?.user) {
-    redirect("/");
+  const { userId } = auth();
+  if (!userId) {
+   redirect("/");
   }
   return <QuizCreation topic={searchParams.topic ?? ""} />;
 };
