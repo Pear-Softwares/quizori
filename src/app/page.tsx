@@ -1,4 +1,3 @@
-import SignInButton from "@/components/SignInButton";
 import {
   Card,
   CardContent,
@@ -9,7 +8,7 @@ import {
 import { redirect } from "next/navigation";
 
 import { auth} from "@clerk/nextjs";
-import SignInpage from "@/components/SignInButton";
+
 export default async function Home() {
   const { userId } = auth();
   if (!userId) {
@@ -22,11 +21,11 @@ export default async function Home() {
           <CardTitle>Welcome to Quizorithm 🔥!</CardTitle>
           <CardDescription>
             Quizorithm is a platform for creating quizzes using AI!. Get started by
-            loggin in below!
+            loggin in above!
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <SignInButton text="Sign In with Google" />
+         
         </CardContent>
       </Card>
     </div>
