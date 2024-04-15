@@ -1,14 +1,13 @@
 import { prisma } from "@/lib/db";
-import { getAuthSession } from "@/lib/nextauth";
 import { quizCreationSchema } from "@/schemas/forms/quiz";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import axios from "axios";
-
+import { auth} from "@clerk/nextjs";
 export async function POST(req: Request, res: Response) {
   try {
-    const session = await getAuthSession();
-    if (!session?.user) {
+    const { userId } = auth();
+    if (!userId) {
       return NextResponse.json(
         { error: "You must be logged in to create a game." },
         {
@@ -22,7 +21,7 @@ export async function POST(req: Request, res: Response) {
       data: {
         gameType: type,
         timeStarted: new Date(),
-        userId: session.user.id,
+        userId: userId,
         topic,
       },
     });
@@ -117,8 +116,8 @@ export async function POST(req: Request, res: Response) {
 }
 export async function GET(req: Request, res: Response) {
   try {
-    const session = await getAuthSession();
-    if (!session?.user) {
+    const { userId } = auth();
+  if (!userId) {
       return NextResponse.json(
         { error: "You must be logged in to create a game." },
         {

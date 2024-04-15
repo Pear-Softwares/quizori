@@ -1,11 +1,12 @@
 import React from "react";
+
 import { auth} from "@clerk/nextjs";
 
 import { redirect } from "next/navigation";
 import QuizCreation from "@/components/forms/QuizCreation";
 
 export const metadata = {
-  title: "Quiz | Quizzzy",
+  title: "Quiz | Quizorithm",
   description: "Quiz yourself on anything!",
 };
 
@@ -18,7 +19,7 @@ interface Props {
 const Quiz = async ({ searchParams }: Props) => {
   const { userId } = auth();
   if (!userId) {
-   redirect("/");
+    redirect("/");
   }
   return <QuizCreation topic={searchParams.topic ?? ""} />;
 };
